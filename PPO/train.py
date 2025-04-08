@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
     ppo = PPO(
         chess,
-        hidden_layers=(2048,) * 1,
-        epochs=10,
+        hidden_layers=(2048,) * 4,
+        epochs=1000,
         buffer_size=buffer_size * 2,
         batch_size=128,
     )
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     agent = DoubleAgentsChess(
         env=chess,
         learner=ppo,
-        episodes=2000,
+        episodes=10,
         train_on=buffer_size,
         result_folder="results/DoubleAgents",
     )
