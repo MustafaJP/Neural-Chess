@@ -601,7 +601,7 @@ class Chess(gym.Env):
 
         rewards = [Rewards.MOVE, Rewards.MOVE]
         rewards[1 - turn] *= 2
-
+        rewards[turn] += Rewards.central_control(next_pos)
         return rewards, [set(), set()]
 
     def is_game_done(self):
