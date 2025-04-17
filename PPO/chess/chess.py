@@ -601,8 +601,7 @@ class Chess(gym.Env):
 
         rewards = [Rewards.MOVE, Rewards.MOVE]
         rewards[1 - turn] *= 2
-        
-        punishement_possible_king_attack = Rewards.king_safety(self, turn)
+        punishement_possible_king_attack = - Rewards.king_safety(self, 1 - turn)
         rewards[turn] += Rewards.central_control(next_pos) + punishement_possible_king_attack
         return rewards, [set(), set()]
 

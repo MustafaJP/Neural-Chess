@@ -85,6 +85,8 @@ QUEEN = BISHOP + ROOK
 
 PAWN = ((1, 0), (2, 0), (1, 1), (1, -1)) + ROOK[2:] + BISHOP[1:]
 
+pawn = ((1, 0), (2, 0), (1, 1), (1, -1))
+
 PIECE_MOVE = [
     None,
     PAWN,
@@ -101,5 +103,5 @@ PIECES = {
     4 : ROOK,
     3 : KNIGHT,
     2 : BISHOP,
-    1 : PAWN
+    1 : pawn
 }

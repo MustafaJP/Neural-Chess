@@ -1,3 +1,4 @@
+import numpy as np
 from chess import moves
 MOVE = -1
 
@@ -39,32 +40,62 @@ def find_king(board):
             if board[i][j] == 6:
                 return (i, j)
 
+def new_is_path_empty(board, from_pos, to_pos, turn):
+    complete_board = board[1 - turn] + board[turn][::-1]
+    from_row, from_col = from_pos
+    to_row, to_col = to_pos
+
+    delta_row = to_row - from_row
+    delta_col = to_col - from_col
+
+    # Determine direction of movement
+    step_row = (delta_row > 0) - (delta_row < 0)
+    step_col = (delta_col > 0) - (delta_col < 0)
+
+    current_row = from_row + step_row
+    current_col = from_col + step_col
+
+    while (current_row, current_col) != (to_row, to_col):
+        if complete_board[current_row][current_col] != 0:
+            return False
+        current_row += step_row
+        current_col += step_col
+    if board[turn][current_row][current_col] != 0:
+        return False
+    return True
+
 def king_safety(chess_object, turn): 
-    pos = find_king(chess_object.board[turn])
-    king_position = (7 - pos[0], 7 - pos[1])
+    king_position = find_king(chess_object.board[turn])
     squares_near_king = []
     correct_range = [i for i in range(8)]
+
     for i in [-1, 0, 1]:
         for j in [-1, 0, 1]:
-            if (king_position[0] + i) in correct_range and (king_position[1] + j) in correct_range and i != 0 and j != 0:
-                squares_near_king.append((king_position[0] + i, king_position[1] + j))
+            if (i != 0 or j != 0) and (king_position[0] + i) in correct_range and (king_position[1] + j) in correct_range:
+                squares_near_king.append((7 - king_position[0] + i, king_position[1] + j))
     danger_score = 0
 
     for i in range(8):
         for j in range(8):
             piece = chess_object.board[1 - turn][i][j]
-            if piece == 0 : # There is no piece
+            if piece == 0:
                 continue
-            
+
             current_square = (i, j)
             possible_moves_for_piece = moves.PIECES[piece]
-            possible_next_positions = [(i + m[0], j + m[1]) for m in possible_moves_for_piece if i + m[0] in correct_range and j + m[1] in correct_range]
-            correct_possible_attacking_king_position = []
-            for possible_move in possible_next_positions:
-                if piece != 3: # Not a knight because it can jump
-                    if chess_object.is_path_empty(current_square, possible_move, 1 - turn) and possible_move in attacking_pieces_near_king:
-                        correct_possible_attacking_king_position.append(possible_move)
-                    danger_score += len(correct_possible_attacking_king_position) * attacking_pieces_near_king[piece]
-                elif possible_move in attacking_pieces_near_king:
-                    danger_score += len(correct_possible_attacking_king_position) * attacking_pieces_near_king[piece]
+            possible_next_positions = [(i + m[0], j + m[1]) for m in possible_moves_for_piece
+                                       if i + m[0] in correct_range and j + m[1] in correct_range]
+
+            attacking_moves = []
+
+            for move in possible_next_positions:
+                if move not in squares_near_king:
+                    continue
+                if piece != 3:  # Not a knight
+                    if new_is_path_empty(chess_object.board, current_square, move, turn):
+                        attacking_moves.append(move)
+                else:  # Knight can jump
+                    attacking_moves.append(move)
+            score_contribution = len(attacking_moves) * attacking_pieces_near_king[piece]
+            danger_score += score_contribution
     return danger_score
