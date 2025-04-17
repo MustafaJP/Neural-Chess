@@ -112,7 +112,7 @@ class Chess(gym.Env):
             return
         pygame.init()
         pygame.font.init()
-        self.font = pygame.font.Font("chess/seguisym.ttf", self.cell_size // 2)
+        self.font = pygame.font.Font("PPO/chess/seguisym.ttf", self.cell_size // 2)
         if self.render_mode == "human":
             pygame.display.init()
             self.screen = pygame.display.set_mode((self.window_size,) * 2)
@@ -601,7 +601,9 @@ class Chess(gym.Env):
 
         rewards = [Rewards.MOVE, Rewards.MOVE]
         rewards[1 - turn] *= 2
-        rewards[turn] += Rewards.central_control(next_pos)
+        
+        punishement_possible_king_attack = Rewards.king_safety(self, turn)
+        rewards[turn] += Rewards.central_control(next_pos) + punishement_possible_king_attack
         return rewards, [set(), set()]
 
     def is_game_done(self):

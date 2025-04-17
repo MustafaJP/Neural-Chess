@@ -94,3 +94,12 @@ PIECE_MOVE = [
     QUEEN,
     KING
 ]
+
+PIECES = {
+    6 : KING,
+    5 : QUEEN,
+    4 : ROOK,
+    3 : KNIGHT,
+    2 : BISHOP,
+    1 : PAWN
+}

@@ -94,7 +94,7 @@ COUNT = 512  # 512
 for name in ["Double Agents", "Single Agent"]:
     print(name, "...")
     folder = "".join(name.split(" "))
-    folder = f"results/{folder}"
+    folder = f"PPO/results/{folder}"
     moves = np.load(f"{folder}/moves.npy")
     mates = np.load(f"{folder}/mates_win.npy")
     checks = np.load(f"{folder}/checks_win.npy")

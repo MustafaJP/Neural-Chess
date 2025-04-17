@@ -27,7 +27,7 @@ class BaseAgent(ABC):
         self.episodes = episodes
         self.train_on = train_on
         self.current_ep = 0
-        self.result_folder = result_folder
+        self.result_folder = "PPO/" + result_folder
 
         self.moves = np.zeros((2, episodes), dtype=np.uint32)
         self.rewards = np.zeros((2, episodes))
