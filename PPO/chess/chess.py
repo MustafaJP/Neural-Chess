@@ -602,7 +602,8 @@ class Chess(gym.Env):
         rewards = [Rewards.MOVE, Rewards.MOVE]
         rewards[1 - turn] *= 2
         punishement_possible_king_attack = - Rewards.king_safety(self, 1 - turn)
-        rewards[turn] += Rewards.central_control(next_pos) + punishement_possible_king_attack
+        rewards[turn] += Rewards.central_control(next_pos) + punishement_possible_king_attack # We are rewarding central control and penalizing bad king safety
+        rewards[1 - turn] -= punishement_possible_king_attack # We are rewarding attacking opponent's king
         return rewards, [set(), set()]
 
     def is_game_done(self):
