@@ -1,5 +1,5 @@
 from chess import Chess
-
+import time
 from .base import BaseAgent
 from buffer.episode import Episode
 from learnings.base import Learning

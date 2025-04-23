@@ -4,7 +4,7 @@ from learnings.ppo import PPO
 
 buffer_size = 32
 if __name__ == "__main__":
-    chess = Chess(window_size=512, max_steps=128, render_mode="rgb_array")
+    chess = Chess(window_size=512, max_steps=128, render_mode="human")
     chess.reset()
 
     ppo = PPO(
@@ -19,13 +19,14 @@ if __name__ == "__main__":
     print(ppo)
     print("-" * 64)
 
-    agent = DoubleAgentsChess(
+    agent = SingleAgentChess(
         env=chess,
         learner=ppo,
         episodes=10,
         train_on=buffer_size,
-        result_folder="results/DoubleAgents",
+        result_folder="results/SingleAgent",
     )
+    
     agent.train(render_each=20, save_on_learn=True)
     agent.save()
     chess.close()

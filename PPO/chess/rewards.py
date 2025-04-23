@@ -1,5 +1,7 @@
 import numpy as np
 from chess import moves
+from chess.pieces import PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING
+
 MOVE = -1
 
 CHECK_WIN = 10
@@ -7,6 +9,15 @@ CHECK_LOSE = -CHECK_WIN
 
 CHECK_MATE_WIN = 100
 CHECK_MATE_LOSE = -CHECK_MATE_WIN
+
+CAPTURE_REWARDS = {
+    PAWN: 1,
+    KNIGHT: 3,
+    BISHOP: 3,
+    ROOK: 5,
+    QUEEN: 9,
+    KING: 100  # Optional, usually end of game anyway
+}
 
 center_zones_occupation = [
     # Most central and important squares

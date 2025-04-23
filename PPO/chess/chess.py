@@ -583,6 +583,10 @@ class Chess(gym.Env):
     def move_piece(self, current_pos: Cell, next_pos: Cell, turn: int):
         next_row, next_col = next_pos
         current_row, current_col = current_pos
+
+        captured_piece = self.board[1 - turn, 7 - next_row, next_col]
+        captured = captured_piece != Pieces.EMPTY
+
         self.board[turn, next_row, next_col] = self.board[
             turn, current_row, current_col
         ]
@@ -604,6 +608,11 @@ class Chess(gym.Env):
         punishement_possible_king_attack = - Rewards.king_safety(self, 1 - turn)
         rewards[turn] += Rewards.central_control(next_pos) + punishement_possible_king_attack # We are rewarding central control and penalizing bad king safety
         rewards[1 - turn] -= punishement_possible_king_attack # We are rewarding attacking opponent's king
+        if captured:
+            capture_reward = Rewards.CAPTURE_REWARDS.get(captured_piece, 0)
+            rewards[turn] += capture_reward
+            rewards[1 - turn] -= capture_reward // 2
+
         return rewards, [set(), set()]
 
     def is_game_done(self):
