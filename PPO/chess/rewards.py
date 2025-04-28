@@ -16,7 +16,7 @@ CAPTURE_REWARDS = {
     BISHOP: 3,
     ROOK: 5,
     QUEEN: 9,
-    KING: 100  # Optional, usually end of game anyway
+    KING: 100 
 }
 
 center_zones_occupation = [
