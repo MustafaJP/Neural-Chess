@@ -43,20 +43,20 @@ We thank the original authors for their excellent open-source implementation.
 ```bash
 git clone https://github.com/YOUR_USERNAME/NeuralChess.git
 cd NeuralChess
-pip install -r requirements.txt
+pip install -r PPO/requirements.txt
 ```
 
 
 ## ▶️ How to Train
 
 ```bash
-python train_agents.py
+python PPO/train_agents.py
 ```
 
 ## ♟️ Play Against the Agent (Human vs Model)
 
 ```bash
-python play_human_game.py
+python PPO/play_human_game.py
 ```
 
 ## 📚 Report
