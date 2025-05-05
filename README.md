@@ -68,7 +68,3 @@ For full details on methodology and experimental results, refer to our Neural Ch
 - Dynamic reward shaping based on game phase (opening, middlegame, endgame)
 - Incorporating positional evaluation metrics like piece mobility and king tropism
 - Adding visualization tools for training progress
-
-## 📄 License
-
-MIT License.
