@@ -41,7 +41,7 @@ We thank the original authors for their excellent open-source implementation.
 ## 🛠️ Installation & Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/NeuralChess.git
+git clone https://github.com/MustafaJP/Neural-Chess
 cd NeuralChess
 pip install -r PPO/requirements.txt
 ```
