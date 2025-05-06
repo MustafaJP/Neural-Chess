@@ -46,7 +46,6 @@ cd NeuralChess
 pip install -r PPO/requirements.txt
 ```
 
-
 ## ▶️ How to Train
 
 ```bash
