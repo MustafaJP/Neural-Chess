@@ -1,5 +1,5 @@
 from chess import Chess
-from agents import SingleAgentChess, DoubleAgentsChess
+from agents import DoubleAgentsChess
 from learnings.ppo import PPO
 
 buffer_size = 32
