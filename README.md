@@ -2,7 +2,7 @@
 
 A reinforcement learning-based chess engine built on top of multi-agent deep RL techniques, with a strong focus on **custom reward shaping** to improve strategic gameplay.
 
-## 🧩 Overview
+## 🧩 Overview 
 
 NeuralChess is a modified and extended version of the open-source [Simple-MADRL-Chess](https://github.com/mhyrzt/Simple-MADRL-Chess) repository. While we adopt most of its architecture, our main contributions lie in **enhancing the reward function** to better reflect in-game strategies and implementing several other improvements for **more balanced and intelligent gameplay**.
 
