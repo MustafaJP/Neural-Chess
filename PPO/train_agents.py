@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print(ppo)
     print("-" * 64)
 
-    agent = SingleAgentChess(
+    agent = DoubleAgentChess(
         env=chess,
         learner=ppo,
         episodes=10,
