@@ -19,12 +19,12 @@ if __name__ == "__main__":
     print(ppo)
     print("-" * 64)
 
-    agent = DoubleAgentChess(
+    agent = DoubleAgentsChess(
         env=chess,
         learner=ppo,
         episodes=10,
         train_on=buffer_size,
-        result_folder="results/SingleAgent",
+        result_folder="results/DoubleAgents",
     )
     
     agent.train(render_each=20, save_on_learn=True)
