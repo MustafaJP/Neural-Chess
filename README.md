@@ -43,7 +43,7 @@ We thank the original authors for their excellent open-source implementation.
 ```bash
 git clone https://github.com/MustafaJP/Neural-Chess.git
 cd Neural-Chess
-pip install -r PPO/requirements.txt
+python3 -m pip install -r PPO/requirements.txt
 ```
 
 ## ▶️ How to Train

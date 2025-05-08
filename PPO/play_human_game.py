@@ -3,12 +3,9 @@ import chess
 import torch
 from chess import Chess
 from chess import pieces as Pieces
-from torch.serialization import add_safe_globals
 from learnings.ppo import PPO
 from learnings.ppo.actor import Actor
 
-add_safe_globals([PPO])
-add_safe_globals([Actor])
 model = torch.load("PPO/results/DoubleAgents/white_ppo.pt", weights_only=False)
 HUMAN_IS_WHITE = False
 env = Chess(render_mode="human")
