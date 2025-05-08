@@ -60,7 +60,7 @@ python PPO/play_human_game.py
 
 ## 📚 Report
 
-For full details on methodology and experimental results, refer to our Neural Chess Final Report
+For full details on methodology and experimental results, refer to our [Neural Chess Final Report])(https://github.com/MustafaJP/Neural-Chess/blob/main/Neural_Chess_Final_Report.pdf)
 
 ## 📌 Future Work
 
